@@ -169,4 +169,63 @@ public class LinkedList {
         }
     }
 
+    // Find the middle node in a linked-list without using the length attribute.
+    public Node findMiddleNode (){
+        if (head == null) return null;
+
+        Node slow = head;
+        Node fast = head;
+
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow;
+    }
+
+    public boolean hasLoop (){
+        if (head == null) return false;
+
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast) return true;
+        }
+
+        return false;
+    }
+
+    public void merge( LinkedList otherList) {
+        Node l1 = head;
+        Node l2 = otherList.head;
+        Node dummy = new Node(0);
+        Node curr = dummy;
+
+        while (l1 != null && l2 != null) {
+            if (l1.value < l2.value) {
+                curr.next = l1;
+                l1 = l1.next;
+            } else {
+                curr.next = l2;
+                l2 = l2.next;
+            }
+            curr = curr.next;
+        }
+
+        if (l1 != null) {
+            curr.next = l1;
+        } else if (l2 != null) {
+            curr.next = l2;
+            tail = otherList.tail;
+        }
+
+        head = dummy.next;
+        length += otherList.length;
+    }
+
 }

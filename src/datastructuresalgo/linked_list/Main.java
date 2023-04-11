@@ -13,13 +13,7 @@ public class Main {
         myLinkedList.getTail();
         myLinkedList.getLength();
 
-
-
-        myLinkedList.reverse();
-
-        myLinkedList.getHead();
-        myLinkedList.getTail();
-        myLinkedList.getLength();
+        System.out.println( myLinkedList.findMiddleNode().value);
 
         myLinkedList.printList();
     }
